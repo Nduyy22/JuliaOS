@@ -1,20 +1,94 @@
-# JuliaOS Open Source AI Agent & Swarm Framework
+# 🏆 DeFi Guardian Swarm - JuliaOS Bounty Submission
+
+![JuliaOS Project Banner](./juliaos_project_banner.png)
+
+## 🎯 **PROJECT OVERVIEW**
+
+**DeFi Guardian Swarm** is a comprehensive multi-agent AI system built on the JuliaOS framework, designed to provide **complete DeFi protection** through intelligent swarm coordination. This project combines **Risk Management**, **MEV Protection**, and **Governance Advisory** into a unified protection ecosystem.
+
+### 🚀 **Bounty Submission Highlights**
+
+- **🤖 10 Specialized AI Agents** across 3 coordinated swarms
+- **🔄 Meta-Coordinator** for intelligent swarm orchestration  
+- **⚡ Production-Ready** JuliaOS integration with 400+ lines of code
+- **� Complete Test Suite** with comprehensive validation
+- **📚 Professional Documentation** with setup automation
+
+## 🏗️ **SYSTEM ARCHITECTURE**
+
+### **3 Specialized Swarms + Coordinator:**
+
+#### 🛡️ **Risk Management Swarm**
+- **Portfolio Monitor Agent** - Real-time portfolio analysis
+- **Volatility Analyzer Agent** - Market volatility assessment  
+- **Liquidation Protector Agent** - Position safety monitoring
+
+#### ⚔️ **MEV Protection Swarm**
+- **Sandwich Detector Agent** - MEV attack detection
+- **Frontrunning Blocker Agent** - Transaction protection
+- **Price Impact Monitor Agent** - Slippage prevention
+
+#### 🗳️ **Governance Advisory Swarm**  
+- **Proposal Analyzer Agent** - DAO proposal evaluation
+- **Voting Strategist Agent** - Optimal voting recommendations
+- **Community Sentiment Agent** - Social sentiment analysis
+
+#### 🎯 **Meta-Coordinator**
+- **DeFi Guardian Coordinator** - Swarm orchestration and decision making
+
+---
+
+## 🚀 **QUICK START**
+
+### **Windows:**
+```bash
+quick_start.bat
+```
+
+### **Linux/Mac:**
+```bash
+./quick_start.sh
+```
+
+### **Manual Setup:**
+```bash
+# Install dependencies
+pip install -r python/defi_guardian_requirements.txt
+
+# Run the system
+python python/scripts/run_defi_guardian_swarm.py
+```
+
+## 📚 **COMPREHENSIVE DOCUMENTATION**
+
+- **📖 [DEFI_GUARDIAN_README.md](./DEFI_GUARDIAN_README.md)** - Complete project documentation (295 lines)
+- **🏆 [SUBMISSION_GUIDE.md](./SUBMISSION_GUIDE.md)** - Bounty submission guide
+- **✅ [PROJECT_AUDIT.md](./PROJECT_AUDIT.md)** - Complete project audit
+- **🧪 [Test Suite](./python/tests/)** - Comprehensive testing framework
+
+---
+
+## 🏆 **JULIAOS FRAMEWORK INTEGRATION**
+
+Built on the powerful **JuliaOS Open Source AI Agent & Swarm Framework** - a multi-chain, community-driven platform for AI and Swarm technological innovation.
+
+
+---
+
+# 📖 **JULIAOS FRAMEWORK DOCUMENTATION**
 
 *joo-LEE-uh-oh-ESS* /ˈdʒuː.li.ə.oʊ.ɛs/
 
-**Noun:**
 **A powerful multi-chain, community-driven framework for AI and Swarm technological innovation, powered by Julia.**
 
 Translations:
 [🇨🇳 汉语](/docs/translations/汉语.md) | [🇦🇪 اَلْعَرَبِيَّةُ](/docs/translations/اَلْعَرَبِيَّةُ.md) | [🇩🇪 Deutschland](/docs/translations/Deutschland.md)| [🇫🇷 Français](/docs/translations/Français.md) | [🇮🇹 Italiano](/docs/translations/Italiano.md) | [🇪🇸 Español](/docs/translations/Español.md)
 
-![JuliaOS Banner](./banner.png)
+![JuliaOS Framework Banner](./banner.png)
 
-## Overview
+## Framework Overview
 
 JuliaOS is a comprehensive framework for building decentralized applications (DApps) with a focus on agent-based architectures, swarm intelligence, and cross-chain operations. It provides both a CLI interface for quick deployment and a framework API for custom implementations. By leveraging AI-powered agents and swarm optimization, JuliaOS enables sophisticated strategies across multiple blockchains.
-
-## Documentation
 
 - 📖 [Overview](https://juliaos.gitbook.io/juliaos-documentation-hub): Project overview and vision
 - 🤝 [Partners](https://juliaos.gitbook.io/juliaos-documentation-hub/partners-and-ecosystems/partners): Partners & Ecosystems
