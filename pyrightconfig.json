@@ -1,0 +1,25 @@
+{
+    "include": [
+        "python/src",
+        "python/scripts",
+        "python/tests",
+        "."
+    ],
+    "exclude": [
+        "backend",
+        "julia",
+        "node_modules"
+    ],
+    "extraPaths": [
+        "./python/src",
+        "./python/src/juliaos",
+        "./python/src/_juliaos_client_api"
+    ],
+    "pythonVersion": "3.13",
+    "pythonPlatform": "Windows",
+    "typeCheckingMode": "basic",
+    "useLibraryCodeForTypes": true,
+    "autoSearchPaths": true,
+    "reportMissingImports": "warning",
+    "reportMissingTypeStubs": false
+}
