@@ -1,0 +1,4 @@
+# Solana dependencies for DeFi Guardian Swarm
+solana-py>=0.30.0
+solders>=0.18.0
+anchorpy>=0.16.0

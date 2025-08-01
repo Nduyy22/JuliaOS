@@ -6,6 +6,10 @@ requests>=2.31.0
 python-dotenv>=1.0.0
 asyncio
 
+# Blockchain integration (Solana onchain functionality)
+solana>=0.30.0          # Solana Python SDK for onchain interaction
+anchorpy>=0.18.0        # Anchor framework Python bindings (optional)
+
 # Optional dependencies for enhanced functionality
 pandas>=2.0.0          # For data analysis and portfolio calculations
 numpy>=1.24.0          # For numerical computations
