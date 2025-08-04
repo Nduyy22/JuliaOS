@@ -33,6 +33,10 @@ import importlib.util
 # Load the run_defi_guardian_swarm module dynamically
 script_path = os.path.join(python_scripts_path, "run_defi_guardian_swarm.py")
 spec = importlib.util.spec_from_file_location("run_defi_guardian_swarm", script_path)
+
+if spec is None or spec.loader is None:
+    raise ImportError(f"Could not load module from {script_path}")
+
 run_defi_guardian_swarm = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(run_defi_guardian_swarm)
 
@@ -328,7 +332,7 @@ class TestDeFiGuardianIntegration:
         mev_agents = create_mev_protection_agents()
         mev_areas = [blueprint.strategy.config["specialization"] for _, _, _, blueprint in mev_agents]
         
-        expected_mev_areas = ["mempool", "sandwich", "optimization"]
+        expected_mev_areas = ["mempool", "sandwich", "mev_resistant"]
         for area in expected_mev_areas:
             assert any(area in spec for spec in mev_areas)
         

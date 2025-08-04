@@ -32,6 +32,23 @@ try:
 except ImportError:
     SOLANA_INTEGRATION_AVAILABLE = False
     print("⚠️ Solana integration optional. Using standard DeFi Guardian.")
+
+# Enhanced CLI demo for better presentation
+try:
+    from enhanced_cli_demo import run_enhanced_cli_demo
+    ENHANCED_CLI_AVAILABLE = True
+    print("✅ Enhanced CLI demo available!")
+except ImportError:
+    ENHANCED_CLI_AVAILABLE = False
+    print("⚠️ Enhanced CLI optional. Install 'rich' for better experience.")
+
+# New interactive CLI enhancements
+try:
+    from interactive_cli_enhancements import run_enhanced_cli_demo as run_interactive_demo
+    INTERACTIVE_CLI_AVAILABLE = True
+    print("✅ Interactive CLI enhancements available!")
+except ImportError:
+    INTERACTIVE_CLI_AVAILABLE = False
 import asyncio
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
@@ -335,9 +352,12 @@ async def create_and_deploy_agents(conn):
     for agent_id, name, description, blueprint in risk_agents:
         try:
             agent = juliaos.Agent.create(conn, blueprint, agent_id, name, description)
-            agent.set_state(juliaos.AgentState.RUNNING)
-            created_agents.append(agent)
-            print(f"  ✅ {name} created and started")
+            if agent is not None and hasattr(agent, 'set_state'):
+                agent.set_state(juliaos.AgentState.RUNNING)
+                created_agents.append(agent)
+                print(f"  ✅ {name} created and started")
+            else:
+                print(f"  ⚠️ {name} created but state not set (mock mode)")
         except Exception as e:
             print(f"  ❌ Failed to create {name}: {e}")
     
@@ -347,9 +367,12 @@ async def create_and_deploy_agents(conn):
     for agent_id, name, description, blueprint in mev_agents:
         try:
             agent = juliaos.Agent.create(conn, blueprint, agent_id, name, description)
-            agent.set_state(juliaos.AgentState.RUNNING)
-            created_agents.append(agent)
-            print(f"  ✅ {name} created and started")
+            if agent is not None and hasattr(agent, 'set_state'):
+                agent.set_state(juliaos.AgentState.RUNNING)
+                created_agents.append(agent)
+                print(f"  ✅ {name} created and started")
+            else:
+                print(f"  ⚠️ {name} created but state not set (mock mode)")
         except Exception as e:
             print(f"  ❌ Failed to create {name}: {e}")
     
@@ -359,9 +382,12 @@ async def create_and_deploy_agents(conn):
     for agent_id, name, description, blueprint in governance_agents:
         try:
             agent = juliaos.Agent.create(conn, blueprint, agent_id, name, description)
-            agent.set_state(juliaos.AgentState.RUNNING)
-            created_agents.append(agent)
-            print(f"  ✅ {name} created and started")
+            if agent is not None and hasattr(agent, 'set_state'):
+                agent.set_state(juliaos.AgentState.RUNNING)
+                created_agents.append(agent)
+                print(f"  ✅ {name} created and started")
+            else:
+                print(f"  ⚠️ {name} created but state not set (mock mode)")
         except Exception as e:
             print(f"  ❌ Failed to create {name}: {e}")
     
@@ -372,9 +398,12 @@ async def create_and_deploy_agents(conn):
         coordinator = juliaos.Agent.create(conn, coordinator_blueprint, COORDINATOR_AGENT_ID, 
                                          "DeFi Guardian Coordinator", 
                                          "Central coordinator for all DeFi Guardian swarms")
-        coordinator.set_state(juliaos.AgentState.RUNNING)
-        created_agents.append(coordinator)
-        print(f"  ✅ Central Coordinator created and started")
+        if coordinator is not None and hasattr(coordinator, 'set_state'):
+            coordinator.set_state(juliaos.AgentState.RUNNING)
+            created_agents.append(coordinator)
+            print(f"  ✅ Central Coordinator created and started")
+        else:
+            print(f"  ⚠️ Central Coordinator created but state not set (mock mode)")
     except Exception as e:
         print(f"  ❌ Failed to create Central Coordinator: {e}")
     
@@ -740,6 +769,26 @@ async def main():
     print("Multi-layered swarm intelligence for comprehensive DeFi protection")
     print("=" * 60)
     
+    # Enhanced CLI Demo Option
+    if ENHANCED_CLI_AVAILABLE:
+        print("\n🎨 Enhanced CLI Demo Available!")
+        print("Would you like to run the enhanced visual demo? (y/N): ", end="")
+        try:
+            # For demo purposes, auto-run enhanced CLI if available
+            import sys
+            if len(sys.argv) > 1 and sys.argv[1] == "--enhanced":
+                choice = "y"
+            else:
+                choice = input().lower().strip()
+                
+            if choice in ['y', 'yes']:
+                print("\n🎨 Starting Enhanced CLI Demo...")
+                await run_enhanced_cli_demo()
+                print("\n🔄 Continuing with technical demonstration...")
+                await asyncio.sleep(2)
+        except (EOFError, KeyboardInterrupt):
+            choice = "n"
+    
     # Validate configuration
     if not OPENAI_API_KEY:
         print("❌ Error: OPENAI_API_KEY not found in environment variables")
@@ -756,13 +805,17 @@ async def main():
             try:
                 existing_agents = conn.list_agents()
                 for agent_info in existing_agents:
-                    if any(keyword in agent_info.get('id', '') for keyword in 
+                    # Handle both dict and object types for agent_info
+                    agent_id = getattr(agent_info, 'id', None) if hasattr(agent_info, 'id') else None
+                    
+                    if agent_id and any(keyword in str(agent_id) for keyword in 
                           ['defi', 'risk', 'mev', 'governance', 'coordinator', 'portfolio', 'liquidity', 'volatility', 
                            'mempool', 'sandwich', 'proposal', 'sentiment', 'voting']):
                         try:
-                            agent = juliaos.Agent.load(conn, agent_info['id'])
-                            agent.delete()
-                            print(f"   🗑️ Deleted existing agent: {agent_info['id']}")
+                            agent = juliaos.Agent.load(conn, str(agent_id))
+                            if agent is not None and hasattr(agent, 'delete'):
+                                agent.delete()
+                                print(f"   🗑️ Deleted existing agent: {agent_id}")
                         except:
                             pass  # Agent might not exist or already deleted
             except:
@@ -843,4 +896,37 @@ async def main():
         print("See backend/README.md for setup instructions")
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    print("🚀 DeFi Guardian Swarm - Ultimate DeFi Protection System")
+    print("="*60)
+    print("Built on JuliaOS Framework")
+    print("Multi-layered swarm intelligence for comprehensive DeFi protection")
+    print("="*60)
+    
+    # Check for CLI enhancements
+    if INTERACTIVE_CLI_AVAILABLE:
+        print("🎨 Enhanced CLI Demo Available!")
+        choice = input("Would you like to run the enhanced visual demo? (y/N): ").lower().strip()
+        if choice in ['y', 'yes']:
+            print("🎨 Starting Enhanced CLI Demo...")
+            run_interactive_demo()
+        else:
+            print("🔄 Continuing with technical demonstration...")
+            asyncio.run(main())
+    elif ENHANCED_CLI_AVAILABLE:
+        print("🎨 Enhanced CLI Demo Available!")
+        choice = input("Would you like to run the enhanced visual demo? (y/N): ").lower().strip()
+        if choice in ['y', 'yes']:
+            print("🎨 Starting Enhanced CLI Demo...")
+            try:
+                # Enhanced CLI demo is async, so we need to run it properly
+                asyncio.run(run_enhanced_cli_demo())
+            except Exception as e:
+                print(f"⚠️ Enhanced CLI demo error: {e}")
+                print("🔄 Falling back to technical demonstration...")
+                asyncio.run(main())
+        else:
+            print("🔄 Continuing with technical demonstration...")
+            asyncio.run(main())
+    else:
+        print("🔄 Starting technical demonstration...")
+        asyncio.run(main())

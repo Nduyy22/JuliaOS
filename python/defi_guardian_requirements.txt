@@ -10,6 +10,9 @@ asyncio
 solana>=0.30.0          # Solana Python SDK for onchain interaction
 anchorpy>=0.18.0        # Anchor framework Python bindings (optional)
 
+# Enhanced CLI interface
+rich>=13.0.0            # Rich terminal interface for enhanced demo
+
 # Optional dependencies for enhanced functionality
 pandas>=2.0.0          # For data analysis and portfolio calculations
 numpy>=1.24.0          # For numerical computations
